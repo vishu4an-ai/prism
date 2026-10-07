@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prism</title>
+<meta name="description" content="India and world news, grouped by story and shown from the left, centre and right.">
+<meta name="theme-color" content="#eef0f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101319" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Prism">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div id="app" class="app">
+  <header class="top">
+    <div class="brand-row">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+          <path d="M4 27h6.93V13.72z" fill="var(--left)"/>
+          <path d="M12.53 27h6.94V10.65L16 4l-3.47 6.65z" fill="var(--centre)"/>
+          <path d="M28 27h-6.93V13.72z" fill="var(--right)"/>
+        </svg>
+        <span>Prism</span>
+      </div>
+      <div class="tools">
+        <div class="sort" role="group" aria-label="Sort stories">
+          <button type="button" data-sort="top">Top</button>
+          <button type="button" data-sort="latest">Latest</button>
+        </div>
+        <button id="refresh" class="icon-btn" type="button" aria-label="Refresh news">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v4.5h-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div id="chips" class="chips" role="group" aria-label="Show coverage from"></div>
+      <p id="blind-note" class="blind-note" hidden>Stories one side has covered and the other has not.</p>
+    </div>
+  </header>
+
+  <div id="ptr" class="ptr" aria-hidden="true"><span id="ptr-text">Pull to refresh</span></div>
+  <p id="status" class="stamp" aria-live="polite"></p>
+  <main id="feed" class="feed"></main>
+
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" data-scope="india">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 5h12a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2zM18 9h2v8a2 2 0 0 1-2 2M8 9h6M8 13h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>India</span>
+    </button>
+    <button type="button" data-scope="world">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5S9.400 5.900 12 3.500z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span>World</span>
+    </button>
+    <button type="button" data-scope="blind">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.500 12S6 5.500 12 5.500 21.500 12 21.500 12 18 18.500 12 18.500 2.500 12 2.500 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20 20 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Blindspots</span>
+    </button>
+  </nav>
+</div>
+
+<div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
